@@ -52,8 +52,8 @@ var kk = function() {
     // console.log("\n")
 
     var addr1 = new bitcore.PrivateKey(root.privateKey.toString('hex')).toAddress();
-    console.log("!!!!!!!!!!!!!!")
-    console.log(addr1)
+    console.log("!!!!!!!!!!!!!!");
+    console.log(addr1);
 
 
     const path = "m/44'/0'/0'/1/0"
