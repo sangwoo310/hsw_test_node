@@ -5,7 +5,7 @@ const bip39 = require('bip39');
 //     return bitcoin.pay
 // }
 
-var btc = function() {
+var btc515 = function() {
     var mnemonic = 'praise you muffin lion enable neck grocery crumble super myself license ghost';
     const seed = bip39.mnemonicToSeed(mnemonic);
     const node = bip32.fromSeed(seed);
@@ -187,24 +187,40 @@ var qq4 = function(){
 }
 
 var qq5 = function(){
-    var vv = new Buffer('a31b6bdcab97691585d2d0235ba9d332c836a3b43f9c6dfa3ee267d071ed0055', 'hex')
-    console.log(vv)
-    var privateKey = new bitcore.PrivateKey('L2gmbrWaRYfL1CFyfcq9V7LmWcwdRXZtxhEGum5ZVGhZkfkXs6Yn');
+    var privateKey = new bitcore.PrivateKey('cf7262369f482555f24e73ec833ae2dd725e2d0e1a2d9ba2012275e91d3251cd');
     console.log(privateKey)
-    var utxo = {
-        "txId" : "99e2259b29aefd4770035da36683641c4108147d582a6405c721515fb5201e3b",
-        "outputIndex" : 0,
-        "address" : "1Nriqgs46NGBM4PW9CiD64tRtHPVBQp5nx",
-        "script" : "76a914efc1f30b2ef8fdcdf63669db82dc4c13718aaac488ac",
-        "vout" : 0,
-        "satoshis" : 3000000
-    };
+    // var utxo = {
+    //     "txId" : "47779076caf14e7d6f408e4990e02c1ac4bb1a46361a3b94b54d489b2d5b5656",
+    //     "outputIndex" : 1,
+    //     "address" : "1P8Kzdyh8HwF75rTgi4vMqcr6c9nvkhp1x",
+    //     "script" : "76a914f2b588beba5bfc913114006a90ef4f64b0b6661888ac",
+    //     "vout" : 0,
+    //     "satoshis" : 10000
+    // };
+
+    var utxo = [{
+            "txId" : "47779076caf14e7d6f408e4990e02c1ac4bb1a46361a3b94b54d489b2d5b5656",
+            "outputIndex" : 1,
+            "address" : "1P8Kzdyh8HwF75rTgi4vMqcr6c9nvkhp1x",
+            "script" : "76a914f2b588beba5bfc913114006a90ef4f64b0b6661888ac",
+            "vout" : 0,
+            "satoshis" : 10000
+        },
+        {
+            "txId" : "7c8ddbd178eeb375da7cb7447c72b8f12050b8e45922144b3cd372cacdc69d4e",
+            "outputIndex" : 0,
+            "address" : "1P8Kzdyh8HwF75rTgi4vMqcr6c9nvkhp1x",
+            "script" : "76a914f2b588beba5bfc913114006a90ef4f64b0b6661888ac",
+            "vout" : 1,
+            "satoshis" : 30000
+        }];
 
     var transaction = new bitcore.Transaction()
     .from(utxo)
-    .to('1465PBf27LX5mRCR8qNRhvtno5gQJBi91x', 2970000)
-    .change('1Nriqgs46NGBM4PW9CiD64tRtHPVBQp5nx')
-    .sign("L2gmbrWaRYfL1CFyfcq9V7LmWcwdRXZtxhEGum5ZVGhZkfkXs6Yn")
+    .to('36QfRHohTDyGo3K6LM7U7zF292DA9p9ovj', 10000)
+    .change('1P8Kzdyh8HwF75rTgi4vMqcr6c9nvkhp1x')
+    .fee(25000)
+    .sign(privateKey)
     .serialize()
     // .verify();
     // .getFee()
@@ -224,7 +240,7 @@ var qq00 = function(){
 
 }
 
-qq5();
+// qq5();
 // qq00()
 
 var zz = function(){
@@ -426,6 +442,7 @@ var btg = function(){
     var decode = bs58check.decode(addr.toString());
     console.log(decode)
     decode[0] = 38;
+    // btc 형식으로 변환은 0
     var lastAddr = bs58check.encode(decode)
     console.log(lastAddr)
    
@@ -438,8 +455,8 @@ var bch = function(){
     var Mnemonic = require('bitcore-mnemonic');
     // var EthereumBip44 = require('ethereum-bip44');
     
-    // var secret = "swear panther clay turtle coin action spray legal aim drama eight erosion";
-    var secret = "abandon panther clay turtle coin action spray legal aim drama eight erosion";
+    var secret = "swear panther clay turtle coin action spray legal aim drama eight erosion";
+    // var secret = "abandon panther clay turtle coin action spray legal aim drama eight erosion";
     var code = new Mnemonic(secret, Mnemonic.Words.ENGLISH);
     console.log(code.toString());
     
@@ -463,5 +480,6 @@ var bch = function(){
     console.log(addr)
 }
 
+// btc();
 // btg();
-// bch();
+bch();
