@@ -9,7 +9,31 @@ module.exports = (app) => {
         process.exit(0);
     });
 
-    app.get('/createWallet', async (req, res) => {
+    app.get('/ethCreateWallet', async (req, res) => {
+        let docs = {};
+
+        let admWallet = await adm.newAccount();
+        
+        let admKey = admWallet.admKey;
+        let mnemonicWords = admWallet.mnemonicWords;
+        let address = admWallet.keypairHD.getAddress(0);
+        let privateKey = (admWallet.keypairHD.getPrivateKey(0)).toString('hex');
+        
+        console.log("admKey :: " + admKey);
+        console.log("mnemonic :: " + mnemonicWords);
+        console.log("address :: " + address);
+        console.log("privatKey :: " + privateKey);
+
+        docs.admKey = admKey;
+        docs.mnemonicWords = mnemonicWords;
+        docs.address = address;
+        docs.privateKey = privateKey;
+
+        res.end(JSON.stringify(docs));
+        return true;
+    });
+
+    app.get('/ethCreateWallet', async (req, res) => {
         let docs = {};
 
         let admWallet = await adm.newAccount();

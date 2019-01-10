@@ -370,7 +370,7 @@ var bb = function(){
 
 
 
-//비트코인
+//비트코인 ==> 복구
 var btc = function(){
     var Mnemonic = require('bitcore-mnemonic');
     // var EthereumBip44 = require('ethereum-bip44');
