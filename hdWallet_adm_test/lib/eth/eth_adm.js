@@ -1,8 +1,8 @@
 const EthereumBIP44 = require('ethereum-bip44/es5');
 
-const util = require('./utils/util');
-const admKey = require('./adm/admKey');
-const admMnemonic = require('./adm/admMnemonic');
+const util = require('../utils/util');
+const admKey = require('../adm/admKey');
+const admMnemonic = require('../adm/admMnemonic');
 const admTx = require('./tx/admTx');
 
 module.exports = {

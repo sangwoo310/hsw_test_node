@@ -380,7 +380,7 @@ var btc = function(){
     console.log(code.toString());
     
     var HDPrivateKey = code.toHDPrivateKey();
-    var derivedPubKey = HDPrivateKey.derive("m/44'/0'/0'/1").hdPublicKey;
+    // var derivedPubKey = HDPrivateKey.derive("m/44'/0'/0'/1").hdPublicKey;
     var child = HDPrivateKey.derive("m/44'/0'/0'/0/0") //BTC 진짜 정상 제대로 되는 값
     // var child = HDPrivateKey.derive("m/44'/156'/0'/0/0") 
     
