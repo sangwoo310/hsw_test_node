@@ -4,7 +4,7 @@ var bitcore = require('bitcore-lib');
 var insight = new explorers.Insight('https://bch-insight.bitpay.com');
 
 insight.getUnspentUtxos('1LCsickBjK2Uu6RC9x7TQ9cAHQS3Drvif2', function(err, docs){
-    console.log(docs[0])
+    console.log(docs)
     var utxo = [{
         txId: docs[0].txId,
         outputIndex : docs[0].outputIndex,

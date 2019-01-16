@@ -1,3 +1,4 @@
+const bitcore = require('bitcore-lib');
 
 const util = require('../utils/util');
 const admKey = require('../adm/admKey');
@@ -20,7 +21,7 @@ module.exports = {
         let childKey = await hdPrivateKey.derive(derivePath);
         
         let wif = childKey.privateKey.toString('hex');
-        let addr = new bitcore.privateKey(wif).toAddress();
+        let addr = new bitcore.PrivateKey(wif).toAddress();
         
         if(coin == "btg") {
             addr = util.btgConvert(addr.toString());
@@ -33,12 +34,12 @@ module.exports = {
         docs.hdPrivateKey = hdPrivateKey.toString();
         docs.childPubKey = childKey.pblicKey.toString();
         docs.childPk = childKey.privateKey.toString();
-        dosc.addr = addr
+        docs.addr = addr;
 
         return docs;
     },
 
-    getAdmKey : async (key) => {
+    getAdmKey : async (coin, key) => {
         //key type = array
         let docs = {};
         let derivePath = await util.derivePath(coin);
@@ -52,7 +53,7 @@ module.exports = {
         let childKey = await hdPrivateKey.derive(derivePath);
         
         let wif = childKey.privateKey.toString('hex');
-        let addr = new bitcore.privateKey(wif).toAddress();
+        let addr = new bitcore.PrivateKey(wif).toAddress();
         
         if(coin == "btg") {
             addr = util.btgConvert(addr.toString());
@@ -66,7 +67,7 @@ module.exports = {
         return docs;
     },
 
-    getMnemonicKey : async (key) => {
+    getMnemonicKey : async (coin, key) => {
         // must be array type key obj !!
         let docs = {};
         let derivePath = await util.derivePath(coin);
@@ -77,13 +78,16 @@ module.exports = {
         let childKey = await hdPrivateKey.derive(derivePath);
         
         let wif = childKey.privateKey.toString('hex');
-        let addr = new bitcore.privateKey(wif).toAddress();
+        let addr = new bitcore.PrivateKey(wif).toAddress();
         
         if(coin == "btg") {
             addr = util.btgConvert(addr.toString());
         } else if(coin == "bch") {
             //변환 체계 추가해야함
         }
+
+        docs.address = addr;
+        docs.privateKey = childKey.privateKey.toString();
 
         return docs;
     },

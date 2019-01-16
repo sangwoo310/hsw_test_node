@@ -57,20 +57,24 @@ module.exports = (app) => {
         let amt = req.body.amt;
         let key = req.body.key;
         let useKey = req.body.useKey;
+        let coin = req.body.coin;
         let keyInfo;
         let fromAddr;
         let pk;
 
         if(useKey == "admKey") {
-            keyInfo = await eth_adm.getAdmKey(key);
+            keyInfo = await bit_adm.getAdmKey(coin, key);
             fromAddr = keyInfo.address;
             pk = keyInfo.privateKey;
         } else if(useKey == "mnemonic") {
-            keyInfo = await eth_adm.getMnemonicKey(key);
+            keyInfo = await bit_adm.getMnemonicKey(coin, key);
             fromAddr = keyInfo.address;
-            pk = keyInfo.privateKey
+            pk = keyInfo.privateKey;
         }
-
+        
+        let rawTx = await bit_adm.signTx(fromAddr, to, amt, pk);
+        res.end(String(rawTx));
+        return true;
 
     });
 

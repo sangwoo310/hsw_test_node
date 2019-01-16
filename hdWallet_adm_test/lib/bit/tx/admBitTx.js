@@ -11,22 +11,15 @@ module.exports = {
             let utxos = [];
 
             for(let i=0; i<docs.length; i++) {
-                let utxo = {
-                    txId: "",
-                    outputIndex : 0,
-                    script: "",
-                    satoshis: 0
-                }
+                let utxo = {}
 
-                utxo.txId = dosc[i].txId;
-                outputIndex = docs[i].outputIndex;
-                script = docs[i].script.toString();
-                satoshis = docs[i].satoshis;
+                utxo.txId = docs[i].txId;
+                utxo.outputIndex = docs[i].outputIndex;
+                utxo.script = docs[i].script.toString();
+                utxo.satoshis = docs[i].satoshis;
 
                 utxos.push(utxo);
             }
-
-            console.log(utxos)
 
             let pk = new bitcore.PrivateKey(fromPk)
         
@@ -38,10 +31,11 @@ module.exports = {
                 .serialize()
 
             return tx;
-        })
+        });
     },
 
     bitSendTx : async (rawTx) => {
+        /*
         let txId = await util.fetch('http://211.214.183.85:7500/rawTx', 'POST')
         .catch(e => {
             console.log("!!! fetch Error !!!\n"+e);
@@ -49,5 +43,6 @@ module.exports = {
         });
 
         return txId;
+        */
     }
 }
