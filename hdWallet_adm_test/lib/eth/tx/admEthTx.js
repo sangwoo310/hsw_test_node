@@ -11,7 +11,7 @@ const txParams = {
 }
 
 module.exports = {
-    signTx : async (from, to, amt, pk) => {
+    ethSignTx : async (from, to, amt, pk) => {
         txParams.nonce = "0x" + await util.fetch('http://211.214.183.85:7500/'+from, 'GET')
         .catch(e => {
             console.log("!!! fetch Error !!!\n" + e);
@@ -38,7 +38,7 @@ module.exports = {
         return rawTx;
     },
 
-    sendTx : async (rawTx) => {
+    ethSendTx : async (rawTx) => {
         let txId = await util.fetch('http://211.214.183.85:7500/rawTx', 'POST')
         .catch(e => {
             console.log("!!! fetch Error !!!\n"+e);

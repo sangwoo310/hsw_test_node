@@ -3,7 +3,7 @@ const EthereumBIP44 = require('ethereum-bip44/es5');
 const util = require('../utils/util');
 const admKey = require('../adm/admKey');
 const admMnemonic = require('../adm/admMnemonic');
-const admTx = require('./tx/admTx');
+const admTx = require('./tx/admEthTx');
 
 module.exports = {
     newAccount : async () => {
@@ -58,10 +58,10 @@ module.exports = {
     },
 
     signTx : async (from, to, amt, pk) => {
-        return admTx.signTx(from, to, amt, pk);
+        return admTx.ethSignTx(from, to, amt, pk);
     },
 
     sendTx : async (rawTx) => {
-        return admTx.sendTx(rawTx);
+        return admTx.ethSendTx(rawTx);
     }
 }

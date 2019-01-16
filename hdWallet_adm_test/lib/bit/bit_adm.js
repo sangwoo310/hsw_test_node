@@ -39,6 +39,7 @@ module.exports = {
     },
 
     getAdmKey : async (key) => {
+        //key type = array
         let docs = {};
         let derivePath = await util.derivePath(coin);
 
@@ -88,10 +89,10 @@ module.exports = {
     },
 
     signTx : async (from, to, amt, pk) => {
-        return admTx.signTx(from, to, amt, pk);
+        return admTx.bitSignTx(from, to, amt, pk);
     },
 
     sendTx : async (rawTx) => {
-        return admTx.sendTx(rawTx);
+        return admTx.ethSendTx(rawTx);
     }
 }
