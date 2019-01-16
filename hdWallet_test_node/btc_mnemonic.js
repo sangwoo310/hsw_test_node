@@ -482,4 +482,45 @@ var bch = function(){
 
 // btc();
 // btg();
-bch();
+// bch();
+
+
+
+
+
+
+//트론 ==> 복구
+var tron = function(){
+    var Mnemonic = require('bitcore-mnemonic');
+    // var EthereumBip44 = require('ethereum-bip44');
+    
+    var secret = "swear panther clay turtle coin action spray legal aim drama eight erosion";
+    var code = new Mnemonic(secret, Mnemonic.Words.ENGLISH);
+    console.log(code.toString());
+    
+    var HDPrivateKey = code.toHDPrivateKey();
+    // var derivedPubKey = HDPrivateKey.derive("m/44'/0'/0'/1").hdPublicKey;
+    var child = HDPrivateKey.derive("m/44'/195'/0'/0/0") //BTC 진짜 정상 제대로 되는 값
+    // var child = HDPrivateKey.derive("m/44'/156'/0'/0/0") 
+    
+    
+    // console.log(derivedPubKey.toString());
+    console.log('\n\n')
+    console.log(HDPrivateKey)
+    // console.log(derivedPubKey)
+    console.log(child.hdPublicKey);
+    console.log(child.publicKey);
+    // console.log(derivedPubKey.privateKey)
+    console.log(child.privateKey)
+
+    var test = Buffer.from(child.privateKey.toString('hex'),'hex')
+    // console.log(test)
+    
+
+    var wif = child.privateKey.toString('hex');
+    var addr = new bitcore.PrivateKey(wif).toAddress();
+    console.log(addr)
+
+}
+
+tron();
