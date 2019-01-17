@@ -94,7 +94,7 @@ module.exports = (app) => {
         } else if(useKey == "mnemonic") {
             keyInfo = await eth_adm.getMnemonicKey(key);
             fromAddr = keyInfo.address;
-            pk = keyInfo.privateKey
+            pk = keyInfo.privateKey;
         }
 
         let rawTx = await eth_adm.signTx(fromAddr, to, amt, pk);
