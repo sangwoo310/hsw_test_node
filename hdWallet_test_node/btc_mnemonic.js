@@ -375,7 +375,8 @@ var btc = function(){
     var Mnemonic = require('bitcore-mnemonic');
     // var EthereumBip44 = require('ethereum-bip44');
     
-    var secret = "swear panther clay turtle coin action spray legal aim drama eight erosion";
+    // var secret = "swear panther clay turtle coin action spray legal aim drama eight erosion";
+    var secret = "pipe sport tail toy initial wheat spell true pigeon dentist thank hand";
     var code = new Mnemonic(secret, Mnemonic.Words.ENGLISH);
     console.log(code.toString());
     
@@ -480,7 +481,7 @@ var bch = function(){
     console.log(addr)
 }
 
-// btc();
+btc();
 // btg();
 // bch();
 
@@ -523,4 +524,4 @@ var tron = function(){
 
 }
 
-tron();
+// tron();
