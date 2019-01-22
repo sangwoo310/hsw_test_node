@@ -7,30 +7,32 @@ const insight = new explorers.Insight('https://insight.bitpay.com');
 
 module.exports = {
     bitSignTx : async (from, to, amt, fromPk) => {
-        insight.getUnspentUtxos(from, function(err, docs){
-            let utxos = [];
-
-            for(let i=0; i<docs.length; i++) {
-                let utxo = {}
-
-                utxo.txId = docs[i].txId;
-                utxo.outputIndex = docs[i].outputIndex;
-                utxo.script = docs[i].script.toString();
-                utxo.satoshis = docs[i].satoshis;
-
-                utxos.push(utxo);
-            }
-
-            let pk = new bitcore.PrivateKey(fromPk)
-        
-            let tx = new bitcore.Transaction().from(utxos)
-                .to(to, amt*(10**8)) // toAddr, amt(satoshis)
-                .change(from) // return amt addr
-                .fee(35000)
-                .sign(pk)
-                .serialize()
-
-            return tx;
+        return new Promise((resolve, reject) => {
+            insight.getUnspentUtxos(from, function(err, docs){
+                let utxos = [];
+    
+                for(let i=0; i<docs.length; i++) {
+                    let utxo = {}
+    
+                    utxo.txId = docs[i].txId;
+                    utxo.outputIndex = docs[i].outputIndex;
+                    utxo.script = docs[i].script.toString();
+                    utxo.satoshis = docs[i].satoshis;
+    
+                    utxos.push(utxo);
+                }
+    
+                let pk = new bitcore.PrivateKey(fromPk)
+            
+                let tx = new bitcore.Transaction().from(utxos)
+                    .to(to, amt*(10**8)) // toAddr, amt(satoshis)
+                    .change(from) // return amt addr
+                    .fee(35000)
+                    .sign(pk)
+                    .serialize()
+    
+                resolve(tx);
+            });
         });
     },
 

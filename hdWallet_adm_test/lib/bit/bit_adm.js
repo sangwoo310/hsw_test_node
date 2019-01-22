@@ -3,7 +3,7 @@ const bitcore = require('bitcore-lib');
 const util = require('../utils/util');
 const admKey = require('../adm/admKey');
 const admMnemonic = require('../adm/admMnemonic');
-const admTx = require('./tx/admTx');
+const admTx = require('./tx/admBitTx');
 
 module.exports = {
     newAccount : async (coin) => {
@@ -32,9 +32,9 @@ module.exports = {
         docs.admKey = key;
         docs.mnemonicWords = mnemonicWords;
         docs.hdPrivateKey = hdPrivateKey.toString();
-        docs.childPubKey = childKey.pblicKey.toString();
+        docs.childPubKey = childKey.publicKey.toString();
         docs.childPk = childKey.privateKey.toString();
-        docs.addr = addr;
+        docs.addr = addr.toString();
 
         return docs;
     },
