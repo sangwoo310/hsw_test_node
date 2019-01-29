@@ -1,6 +1,7 @@
 const bitcore = require('bitcore-lib');
 
-const util = require('../utils/util');
+const commUtil = require('../utils/commUtil');
+const bitUtil = require('./utils/bitUtil');
 const admKey = require('../adm/admKey');
 const admMnemonic = require('../adm/admMnemonic');
 const admTx = require('./tx/admBitTx');
@@ -8,7 +9,7 @@ const admTx = require('./tx/admBitTx');
 module.exports = {
     newAccount : async (coin) => {
         let docs = {};
-        let derivePath = await util.derivePath(coin);
+        let derivePath = await commUtil.derivePath(coin);
 
         let rng = await admKey.genKey();
         let key = await admKey.convert(rng);
@@ -25,7 +26,7 @@ module.exports = {
         let addr = new bitcore.PrivateKey(wif, "testnet").toAddress(); //testnet
         
         if(coin == "btg") {
-            addr = util.btgConvert(addr.toString());
+            addr = bitUtil.btgConvert(addr.toString());
         } else if(coin == "bch") {
             //변환 체계 추가해야함
         }
@@ -43,7 +44,7 @@ module.exports = {
     getAdmKey : async (coin, key) => {
         //key type = array
         let docs = {};
-        let derivePath = await util.derivePath(coin);
+        let derivePath = await commUtil.derivePath(coin);
 
         let enKey = await admKey.compound(key);
         let buf = await admKey.setBuf(enKey);
@@ -58,7 +59,7 @@ module.exports = {
         let addr = new bitcore.PrivateKey(wif, "testnet").toAddress();  //testnet
         
         if(coin == "btg") {
-            addr = util.btgConvert(addr.toString());
+            addr = bitUtil.btgConvert(addr.toString());
         } else if(coin == "bch") {
             //변환 체계 추가해야함
         }
@@ -72,7 +73,7 @@ module.exports = {
     getMnemonicKey : async (coin, key) => {
         // must be array type key obj !!
         let docs = {};
-        let derivePath = await util.derivePath(coin);
+        let derivePath = await commUtil.derivePath(coin);
 
         let mnemonic = await admMnemonic.mnemonic(key);
 
@@ -84,7 +85,7 @@ module.exports = {
         let addr = new bitcore.PrivateKey(wif, "testnet").toAddress();  //testnet
         
         if(coin == "btg") {
-            addr = util.btgConvert(addr.toString());
+            addr = bitUtil.btgConvert(addr.toString());
         } else if(coin == "bch") {
             //변환 체계 추가해야함
         }

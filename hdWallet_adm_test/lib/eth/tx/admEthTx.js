@@ -1,6 +1,6 @@
 // const web3 = require('web3');
 const ethTx = require('ethereumjs-tx');
-const util = require('../utils/util');
+const commUtil = require('../../utils/commUtil');
 
 const txParams = {
     nonce : '',
@@ -39,7 +39,7 @@ module.exports = {
     },
 
     ethSendTx : async (rawTx) => {
-        let txId = await util.fetch('http://211.214.183.85:7500/rawTx', 'POST')
+        let txId = await commUtil.fetch('http://211.214.183.85:7500/rawTx', 'POST')
         .catch(e => {
             console.log("!!! fetch Error !!!\n"+e);
             return e;
