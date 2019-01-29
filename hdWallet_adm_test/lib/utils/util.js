@@ -47,7 +47,8 @@ module.exports = {
         let derivePath = "";
 
         if(coin == "btc") {
-            derivePath = "m/44'/0'/0'/0/0";
+            // derivePath = "m/44'/0'/0'/0/0"; //mainnet
+            derivePath = "m/44'/1'/0'/0/0"; // testnet
         } else if(coin == "bch") {
             derivePath = "m/44'/145'/0'/0/0";
         } else if(coin == "btg") {

@@ -21,7 +21,8 @@ module.exports = {
         let childKey = await hdPrivateKey.derive(derivePath);
         
         let wif = childKey.privateKey.toString('hex');
-        let addr = new bitcore.PrivateKey(wif).toAddress();
+        // let addr = new bitcore.PrivateKey(wif).toAddress();  //mainnet
+        let addr = new bitcore.PrivateKey(wif, "testnet").toAddress(); //testnet
         
         if(coin == "btg") {
             addr = util.btgConvert(addr.toString());
@@ -53,7 +54,8 @@ module.exports = {
         let childKey = await hdPrivateKey.derive(derivePath);
         
         let wif = childKey.privateKey.toString('hex');
-        let addr = new bitcore.PrivateKey(wif).toAddress();
+        // let addr = new bitcore.PrivateKey(wif).toAddress();  //mainnet
+        let addr = new bitcore.PrivateKey(wif, "testnet").toAddress();  //testnet
         
         if(coin == "btg") {
             addr = util.btgConvert(addr.toString());
@@ -78,7 +80,8 @@ module.exports = {
         let childKey = await hdPrivateKey.derive(derivePath);
         
         let wif = childKey.privateKey.toString('hex');
-        let addr = new bitcore.PrivateKey(wif).toAddress();
+        // let addr = new bitcore.PrivateKey(wif).toAddress(); //mainnet
+        let addr = new bitcore.PrivateKey(wif, "testnet").toAddress();  //testnet
         
         if(coin == "btg") {
             addr = util.btgConvert(addr.toString());
@@ -97,6 +100,6 @@ module.exports = {
     },
 
     sendTx : async (rawTx) => {
-        return admTx.ethSendTx(rawTx);
+        return admTx.bitSendTx(rawTx);
     }
 }

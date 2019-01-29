@@ -29,7 +29,7 @@ module.exports = {
                     .change(from) // return amt addr
                     .fee(35000)
                     .sign(pk)
-                    .serialize()
+                    // .serialize()
     
                 resolve(tx);
             });
@@ -37,14 +37,12 @@ module.exports = {
     },
 
     bitSendTx : async (rawTx) => {
-        /*
-        let txId = await util.fetch('http://211.214.183.85:7500/rawTx', 'POST')
+        let txId = await util.fetch('http://211.214.183.85:7100/sendRawTx', 'POST')
         .catch(e => {
             console.log("!!! fetch Error !!!\n"+e);
             return e;
         });
 
         return txId;
-        */
     }
 }

@@ -102,6 +102,13 @@ module.exports = (app) => {
         return true;
     });
 
+    app.post('/bitSendTx', async (req, res) => {
+        let rawTx = req.body.rawTx;
+        let txId = await bit_adm.sendTx(rawTx);
+
+        res.end(JSON.stringify(txId));
+        return true;
+    });
 
     app.post('/ethSendTx', async (req, res) => {
         let rawTx = req.body.rawTx;

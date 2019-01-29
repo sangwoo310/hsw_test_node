@@ -251,7 +251,7 @@ var zz = function(){
     console.log('masterKey :: '+xPriKey);
 
     // 단절된 확장 자식 공개키 생성
-    var xPubKey = xPriKey.deriveChild("m/44'/60'/0'").hdPublicKey;
+    var xPubKey = xPriKey.deriveChild("m/44'/1'/0'").hdPublicKey;
 
     console.log(xPubKey)
     // 0번째 자식 공개키 생성
@@ -259,7 +259,7 @@ var zz = function(){
 
     console.log(pubKey)
 }
-
+// zz()
 var zz2 = function(){
     var Mnemonic = require('bitcore-mnemonic')
     // 니모닉 코드 생성
@@ -270,11 +270,11 @@ var zz2 = function(){
     console.log("pk :: "+xPriKey);
 
     // var xPubKey = xPriKey.deriveChild("m/44'/0'/0'").hdPublicKey;
-    var child = xPriKey.deriveChild("m/44'/0'/0'/0/0'");
+    var child = xPriKey.deriveChild("m/44'/1'/0'/0/0");
     console.log("!!!!!!!!!!!!!")
     console.log(child)
 
-    var addr = new bitcore.PrivateKey(child.privateKey.toString('hex')).toAddress();
+    var addr = new bitcore.PrivateKey(child.privateKey.toString('hex'), "testnet").toAddress();
     console.log("@@@@@@@@@@")
     console.log(addr)
 
@@ -291,7 +291,7 @@ var zz2 = function(){
 
 }
 
-// zz2();
+zz2();
 
 var gg = function(){
     var Mnemonic = require('bitcore-mnemonic');
@@ -481,7 +481,7 @@ var bch = function(){
     console.log(addr)
 }
 
-btc();
+// btc();
 // btg();
 // bch();
 
