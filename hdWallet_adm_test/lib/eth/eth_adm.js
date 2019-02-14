@@ -15,7 +15,10 @@ module.exports = {
         let mnemonicWords = await admMnemonic.newEntropy(buf);
         let mnemonic = await admMnemonic.mnemonic(mnemonicWords);
 
-        let keys = mnemonic.toHDPrivateKey();
+        // insert passwd
+        let keys = mnemonic.toHDPrivateKey('hsw');
+        // let keys = mnemonic.toHDPrivateKey();    //none passwd
+
         let keypairHD  = new EthereumBIP44(keys);
 
         docs.admKey = key;

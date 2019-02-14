@@ -3,7 +3,8 @@ const commUtil = require('../../utils/commUtil');
 const explorers = require('bitcore-explorers');
 const bitcore = require('bitcore-lib');
 
-const insight = new explorers.Insight('https://insight.bitpay.com');
+//const insight = new explorers.Insight('https://insight.bitpay.com'); //btc mainnet
+const insight = new explorers.Insight('https://test-insight.bitpay.com'); //btc testnet
 
 module.exports = {
     bitSignTx : async (from, to, amt, fromPk) => {
@@ -37,7 +38,7 @@ module.exports = {
     },
 
     bitSendTx : async (rawTx) => {
-        let txId = await commUtil.fetch('http://211.214.183.85:7100/sendRawTx', 'POST')
+        let txId = await util.fetch('http://211.214.183.85:7100/sendRawTransaction', {method:'POST', body:rawTx})
         .catch(e => {
             console.log("!!! fetch Error !!!\n"+e);
             return e;

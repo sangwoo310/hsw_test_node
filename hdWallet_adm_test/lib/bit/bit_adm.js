@@ -26,7 +26,7 @@ module.exports = {
         let addr = new bitcore.PrivateKey(wif, "testnet").toAddress(); //testnet
         
         if(coin == "btg") {
-            addr = bitUtil.btgConvert(addr.toString());
+            addr = await bitUtil.btgConvert(addr.toString());
         } else if(coin == "bch") {
             //변환 체계 추가해야함
         }

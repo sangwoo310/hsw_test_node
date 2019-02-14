@@ -29,8 +29,12 @@ module.exports = {
         return ret;
     },
 
-    mnemonic : (words) => {
-        return new Mnemonic(words, Mnemonic.Words.ENGLISH);
+    mnemonic : (words, passphrase) => {
+        let code = new Mnemonic(words, Mnemonic.Words.ENGLISH);
+        if(passphrase != '') {
+            return code.toHDPrivateKey(passphrase)
+        }
+        return code.toHDPrivateKey()
+//        return new Mnemonic(words, Mnemonic.Words.ENGLISH); 원본
     }
-    
 }

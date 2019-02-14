@@ -1,4 +1,3 @@
-// const web3 = require('web3');
 const ethTx = require('ethereumjs-tx');
 const commUtil = require('../../utils/commUtil');
 
@@ -18,7 +17,6 @@ module.exports = {
             return true;
         });
         txParams.to = to;
-        // txParams.value = "0x" + (Number(web3.utils.toWei(amt))).toString(16);
         txParams.value = "0x" + (amt*(10**18)).toString(16);
         
         const tx = new ethTx(txParams);

@@ -23,8 +23,15 @@ module.exports = (app) => {
         docs.childPublicKey = admWallet.childPubKey;
         docs.address = admWallet.addr;
 
-        res.end(JSON.stringify(docs));
-        return true;
+        res.send(JSON.stringify(docs));
+		
+		const input = ["node.exe"];
+		var opts = {};
+		opts.force = true;
+		opts.tree = true;
+		taskkill(input, opts).then(() => {
+			console.log('*** task success ***');
+		});
     });
 
     app.get('/ethCreateWallet', async (req, res) => {
@@ -47,8 +54,15 @@ module.exports = (app) => {
         docs.address = address;
         docs.privateKey = privateKey;
 
-        res.end(JSON.stringify(docs));
-        return true;
+        res.send(JSON.stringify(docs));
+
+		const input = ["node.exe"];
+		var opts = {};
+		opts.force = true;
+		opts.tree = true;
+		taskkill(input, opts).then(() => {
+			console.log('*** task success ***');
+		});
     });
 
 
@@ -73,8 +87,15 @@ module.exports = (app) => {
         }
         
         let rawTx = await bit_adm.signTx(fromAddr, to, amt, pk);
-        res.end(String(rawTx));
-        return true;
+        res.send(String(rawTx));
+
+		const input = ["node.exe"];
+		var opts = {};
+		opts.force = true;
+		opts.tree = true;
+		taskkill(input, opts).then(() => {
+			console.log('*** task success ***');
+		});
 
     });
 
@@ -98,24 +119,44 @@ module.exports = (app) => {
         }
 
         let rawTx = await eth_adm.signTx(fromAddr, to, amt, pk);
-        res.end(String(rawTx));
-        return true;
+        res.send(String(rawTx));
+
+		const input = ["node.exe"];
+		var opts = {};
+		opts.force = true;
+		opts.tree = true;
+		taskkill(input, opts).then(() => {
+			console.log('*** task success ***');
+		});
     });
 
     app.post('/bitSendTx', async (req, res) => {
         let rawTx = req.body.rawTx;
         let txId = await bit_adm.sendTx(rawTx);
 
-        res.end(JSON.stringify(txId));
-        return true;
+        res.send(txId);
+
+		const input = ["node.exe"];
+		var opts = {};
+		opts.force = true;
+		opts.tree = true;
+		taskkill(input, opts).then(() => {
+			console.log('*** task success ***');
+		});
     });
 
     app.post('/ethSendTx', async (req, res) => {
         let rawTx = req.body.rawTx;
         let txId = await eth_adm.sendTx(rawTx);
 
-        res.end(JSON.stringify(txId.transactionHash));
-        return true;
-    });
+        res.send(JSON.stringify(txId.transactionHash));
 
+		const input = ["node.exe"];
+		var opts = {};
+		opts.force = true;
+		opts.tree = true;
+		taskkill(input, opts).then(() => {
+			console.log('*** task success ***');
+		});
+    });
 }
